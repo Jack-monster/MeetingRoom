@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<!-- Begin Head -->
+
+<head>
+    <title>会议室管理系统</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="MobileOptimized" content="320">
+    <!--Start Style -->
+    <link rel="stylesheet" type="text/css" href="static/css/fonts.css">
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/icofont.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" id="theme-change" type="text/css" href="">
+</head>
+
+<body>
+<div class="loader">
+    <div class="spinner">
+        <img src="static/picture/loader.gif" alt="">
+    </div>
+</div>
+<!-- Main Body -->
+<div class="page-wrapper">
+
+    <div th:replace="header.html::title"></div>
+
+    <!-- Sidebar Start -->
+    <aside class="sidebar-wrapper">
+        <div class="side-menu-wrap">
+            <ul class="main-menu">
+                <li>
+                    <a href="indexAdmin" class="active">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            </span>
+                        <span class="menu-text">
+                                会议室信息
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="manage">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                            </span>
+                        <span class="menu-text">
+                                预约审批
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users">
+                            <span class="icon-menu feather-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                        <span class="menu-text">
+                                用户列表
+                            </span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </aside>
+    <!-- Container Start -->
+    <div class="page-wrapper">
+        <div class="main-content">
+            <!-- Page Title Start -->
+            <div class="row">
+                <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="page-title-wrapper">
+                        <div class="page-title-box">
+                            <h4 class="page-title bold">会议室信息预览</h4>
+                        </div>
+                        <div class="breadcrumb-list">
+                            <ul>
+                                <li class="breadcrumb-link">
+                                    <a href="javascript:void(0);"><i class="fas fa-home mr-2"></i>会议室信息预览</a>
+                                </li>
+                                <li class="breadcrumb-link active">会议室预约系统</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- From Start -->
+            <div class="from-wrapper">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>添加会议室</h4>
+                                <p class="card-desc">请在下方填写所添加的 <code>会议室信息</code></p>
+                            </div>
+                            <div class="card-body">
+                                <form class="separate-form" id="add-form">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="room_name" class="col-form-label">会议室名称</label>
+                                                    <input class="form-control" type="text" placeholder="一个会议室的独白" id="room_name" name="room_name">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="desc" class="col-form-label">会议室简介</label>
+                                                    <input class="form-control" type="text" placeholder="讲述了一个会议室要和其他会议室开一辈子会议的故事" id="desc" name="desc">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="capacity" class="col-form-label">会议室容量</label>
+                                                    <input class="form-control" type="number" placeholder="一伯万宁" id="capacity" name="capacity">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="image" class="col-form-label">会议室图片URL</label>
+                                                    <input class="form-control" type="text" placeholder="我是图片URL" id="image" name="image">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="location" class="col-form-label">会议室位置</label>
+                                                    <input class="form-control" type="text" placeholder="一伯万宁" id="location" name="location">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="ad-footer-btm">
+                <p>Copyright &copy; 2021.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script Start -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/popper.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/swiper.min.js"></script>
+<script src="static/js/apexcharts.min.js"></script>
+<script src="static/js/control-chart-apexcharts.js"></script>
+<!-- Page Specific -->
+<script src="static/js/nice-select.min.js"></script>
+<!-- Custom Script -->
+<script src="static/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#add-form').on('submit', function (e) {
+            e.preventDefault();
+            const room_name = $('#room_name').val();
+            const capacity = $('#capacity').val();
+            const desc = $('#desc').val();
+            const image = $('#image').val();
+            const location = $('#location').val();
+
+            if (!room_name || !capacity || !desc || !image || !location) {
+                alert('请填写所有必填项！');
+                return;
+            }
+
+
+            $.ajax({
+                url: 'add-room',
+                method: 'POST',
+                data: {
+                    room_name: room_name,
+                    capacity: capacity,
+                    desc: desc,
+                    image: image,
+                    location: location
+                },
+                success: function (response) {
+                    if(response.status === "success") {
+                        window.location.href = 'add-room';
+                        alert(response.message)
+                    }else{
+                        window.location.href = 'add-room';
+                        alert(response.message)
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error submitting  room:', error);
+                }
+            });
+        });
+
+
+    });
+</script>
+
+</body>
+
+</html>
